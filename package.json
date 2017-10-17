@@ -1,0 +1,33 @@
+{
+	"name": "ualf",
+	"description": "LPSS/CGLSS (UALF) data parser",
+	"version": "0.1.0",
+	"main": "index.js",
+	"license": "MIT",
+	"homepage": "https://github.com/Gipphe/ualf",
+	"bugs": "https://github.com/Gipphe/ualf/issues",
+	"author": {
+		"name": "Victor Nascimento Bakke",
+		"email": "gipphe@gmail.com",
+		"url": "http://giphtbase.org/"
+	},
+	"keywords": [
+		"ulaf",
+		"lpss",
+		"cglss",
+		"lightning",
+		"string",
+		"parser",
+		"parse"
+	],
+	"scripts": {
+		"test": "tap --cov test.spec.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/Gipphe/ualf.git"
+	},
+	"devDependencies": {
+		"tap": "^10.7.2"
+	}
+}
