@@ -21,7 +21,7 @@
 		"parse"
 	],
 	"scripts": {
-		"test": "tap --cov test.spec.js"
+		"test": "tap --cov --coverage-report=lcov test.spec.js"
 	},
 	"repository": {
 		"type": "git",
