@@ -4,6 +4,7 @@
 
 [![Package status](https://img.shields.io/npm/v/ualf.svg?style=flat-square)](https://www.npmjs.com/package/ualf)
 [![Build status](https://img.shields.io/circleci/project/github/Gipphe/ualf.svg?style=flat-square)](https://circleci.com/gh/Gipphe/ualf)
+[![Code coverage](https://img.shields.io/coveralls/Gipphe/ualf.svg?style=flat-square)](https://coveralls.io/github/Gipphe/ualf)
 [![License](https://img.shields.io/github/license/Gipphe/ualf.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 A tiny package for parsing LPSS/CGLSS (UALF) strings.
