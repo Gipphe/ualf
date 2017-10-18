@@ -28,6 +28,7 @@
 		"url": "http://github.com/Gipphe/ualf.git"
 	},
 	"devDependencies": {
+		"coveralls": "^3.0.0",
 		"tap": "^10.7.2"
 	}
 }
