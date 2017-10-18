@@ -21,13 +21,14 @@
 		"parse"
 	],
 	"scripts": {
-		"test": "tap --cov --coverage-report=lcov test.spec.js"
+		"test": "tap --coverage test.spec.js"
 	},
 	"repository": {
 		"type": "git",
 		"url": "http://github.com/Gipphe/ualf.git"
 	},
 	"devDependencies": {
+		"coveralls": "^3.0.0",
 		"tap": "^10.7.2"
 	}
 }
