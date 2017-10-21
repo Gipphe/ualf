@@ -1,7 +1,17 @@
 module.exports = function ualf(str) {
 	var res = str.split(' ');
+	var date = new Date(
+		res[1],
+		Number(res[2]) - 1,
+		res[3],
+		res[4],
+		res[5],
+		res[6],
+		Math.round(res[7] / 1000000)
+	);
 	return {
 		version: res[0],
+		date,
 		year: res[1],
 		month: res[2],
 		day: res[3],
