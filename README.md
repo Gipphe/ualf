@@ -1,13 +1,13 @@
 # ualf
 
-> LPSS/CGLSS (UALF) data parser
+> LLPS/CGLSS (UALF) data parser
 
 [![Package status](https://img.shields.io/npm/v/ualf.svg?style=flat-square)](https://www.npmjs.com/package/ualf)
 [![Build status](https://img.shields.io/circleci/project/github/Gipphe/ualf.svg?style=flat-square)](https://circleci.com/gh/Gipphe/ualf)
 [![Code coverage](https://img.shields.io/coveralls/Gipphe/ualf.svg?style=flat-square)](https://coveralls.io/github/Gipphe/ualf)
 [![License](https://img.shields.io/github/license/Gipphe/ualf.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-A tiny package for parsing LPSS/CGLSS (UALF) strings.
+A tiny package for parsing LLPS/CGLSS (UALF) strings.
 
 * [Getting Started](#getting-started)
   * [Installing](#installing)
@@ -157,7 +157,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Further reading
 
-For more information on the specifics of LPSS/CGLSS, and their data format UALF, check
+For more information on the specifics of LLPS/CGLSS, and their data format UALF, check
 [this document](http://www.gentoogeek.org/files/lightning_MARSS_poster.pdf)
 or
 [this abstract](https://ams.confex.com/ams/Annual2005/webprogram/Paper85823.html).
