@@ -46,6 +46,7 @@ output is an object with the following key-value pairs for the given string abov
 ```json
 {
   "version": "0",
+  "date": Date,
   "year": "2017",
   "month": "10",
   "day": "16",
@@ -80,13 +81,69 @@ output is an object with the following key-value pairs for the given string abov
 }
 ```
 
+For numerical output, pass along an options object with the `number` property set to `true`:
+
+```javascript
+var ualf = require('ualf');
+
+ualf(
+  '0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 ' +
+  '0 12 17 134.27 0.40 0.40 0.72 13.1 10.0 -0.0 1 1 0 1',
+  { number: true }
+);
+```
+
+output is an object with the following key-value pairs for the given string above:
+
+```json
+{
+  "version": 0,
+  "date": Date,
+  "year": 2017,
+  "month": 10,
+  "day": 16,
+  "hour": 16,
+  "hours": 16,
+  "minutes": 01,
+  "seconds": 07,
+  "nanoseconds": 345596160,
+  "nano": 345596160,
+  "latitude": 65.5204,
+  "lat": 65.5204,
+  "longitude": 12.7377,
+  "long": 12.7377,
+  "lng": 12.7377,
+  "peakCurrent": -87,
+  "multiplicity": 0,
+  "numSensors": 12,
+  "numberOfSensors": 12,
+  "freedom": 17,
+  "degreesOfFreedom": 17,
+  "ellipseAngle": 134.27,
+  "semiMajorAxis": 0.40,
+  "semiMinorAxis": 0.40,
+  "chiSquareValue": 0.72,
+  "riseTime": 13.1,
+  "peakToZeroTime": 10.0,
+  "maxRateOfRise": -0.0,
+  "cloudIndicator": 1,
+  "angleIndicator": 1,
+  "signalIndicator": 0,
+  "timingIndicator": 1
+}
+```
+
 ## Specification
 
-The UALF "specification" looks something like [this](https://beta.api.met.no/images/UALF_format.png). Each of these named segments have been extracted as their own key-value pair of the resulting object returned from calling this package. All values are kept as strings to retain leading zeroes.
+The UALF "specification" looks something like
+[this](https://beta.api.met.no/images/UALF_format.png). Each of these named segments have been
+extracted as their own key-value pair of the resulting object returned from calling this package.
+All values are kept as strings to retain leading zeroes.
 
 ```javascript
 {
   version,
+  date,            // Date object with the passed date and time
   year,
   month,
   day,
@@ -141,7 +198,9 @@ to run unit tests.
 
 ## Compatibility
 
-This package even works with ES3, meaning you can use it in IE 7 and 8 without issue.
+This package is compatible all the way down to Node 4, and at most uses ES6 features such as `const`
+and `let`. As such, in browser context, it is
+[compatible with Chrome 21+, Edge, Internet Explorer 11 Firefox 36 and Safari 5.1](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const#Browser_compatibility).
 
 ## Changelog
 
@@ -149,7 +208,8 @@ Changelog is available at [the repository](http://github.com/Gipphe/ualf/blob/ma
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Gipphe/ualf/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the
+[tags on this repository](https://github.com/Gipphe/ualf/tags).
 
 ## License
 
