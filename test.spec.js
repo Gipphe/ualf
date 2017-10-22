@@ -1,7 +1,7 @@
-const tap = require('tap');
-const ualf = require('.');
+var tap = require('tap');
+var ualf = require('.');
 
-const res = ualf('0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 0 12 17 134.27 0.40 0.40 0.72 13.1 10.0 -0.0 1 1 0 1');
+var res = ualf('0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 0 12 17 134.27 0.40 0.40 0.72 13.1 10.0 -0.0 1 1 0 1');
 tap.type(res, 'object');
 tap.equal(res.version, '0');
 tap.equal(res.year, '2017');
@@ -43,7 +43,7 @@ tap.equal(res.angleIndicator, '1');
 tap.equal(res.signalIndicator, '0');
 tap.equal(res.timingIndicator, '1');
 
-const numRes = ualf('0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 0 12 17 134.27 0.40 0.40 0.72 13.1 10.0 -0.0 1 1 0 1', { number: true });
+var numRes = ualf('0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 0 12 17 134.27 0.40 0.40 0.72 13.1 10.0 -0.0 1 1 0 1', { number: true });
 tap.type(numRes, 'object');
 tap.equal(numRes.version, 0);
 tap.equal(numRes.year, 2017);

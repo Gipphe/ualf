@@ -1,9 +1,9 @@
-const R = require('ramda');
+var R = require('ramda');
 
 module.exports = function ualf(str, config) {
-	const number = (config && config.number) || false;
-	const res = str.split(' ');
-	const date = new Date(
+	var number = (config && config.number) || false;
+	var res = str.split(' ');
+	var date = new Date(
 		res[1],
 		Number(res[2]) - 1,
 		res[3],
@@ -12,9 +12,9 @@ module.exports = function ualf(str, config) {
 		res[6],
 		Math.round(res[7] / 1000000)
 	);
-	const result = {
+	var result = {
 		version: res[0],
-		date,
+		date: date,
 		year: res[1],
 		month: res[2],
 		day: res[3],
@@ -48,11 +48,14 @@ module.exports = function ualf(str, config) {
 		timingIndicator: res[24],
 	};
 	if (number) {
-		return R.map(R.ifElse(
-			R.pipe(R.type, R.equals('String')),
-			Number,
-			R.identity
-		))(result);
+		return R.map(
+			R.ifElse(
+				R.pipe(R.type, R.equals('String')),
+				Number,
+				R.identity
+			),
+			result
+		);
 	}
 	return result;
 };
