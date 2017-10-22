@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Numerical output.
 
+### Fixed
+
+- ES3 compatibility.
+
 ## [1.1.1] - 2017-10-22
 
 ### Added
