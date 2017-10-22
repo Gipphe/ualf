@@ -1,6 +1,6 @@
 module.exports = function ualf(str) {
-	var res = str.split(' ');
-	var date = new Date(
+	const res = str.split(' ');
+	const date = new Date(
 		res[1],
 		Number(res[2]) - 1,
 		res[3],
@@ -42,6 +42,6 @@ module.exports = function ualf(str) {
 		cloudIndicator: res[21],
 		angleIndicator: res[22],
 		signalIndicator: res[23],
-		timingIndicator: res[24]
+		timingIndicator: res[24],
 	};
 };

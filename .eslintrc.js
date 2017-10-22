@@ -12,6 +12,7 @@ module.exports = {
 		'no-unused-vars': [1, { vars: 'local' }],
 		'default-case': 'off',
 		'new-cap': [2, { capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'] }],
-		'import/no-extraneous-dependencies': ['error', { devDependencies: ['!src/**', '!src/*', '*', '**']}]
+		'import/no-extraneous-dependencies': ['error', { devDependencies: ['!src/**', '!src/*', '*', '**']}],
+		'comma-dangle': ['error', 'always-multiline'],
 	},
 };
