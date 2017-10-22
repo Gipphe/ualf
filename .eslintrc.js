@@ -14,5 +14,8 @@ module.exports = {
 		'new-cap': [2, { capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'] }],
 		'import/no-extraneous-dependencies': ['error', { devDependencies: ['!src/**', '!src/*', '*', '**']}],
 		'comma-dangle': ['error', 'always-multiline'],
+		'no-var': 0,
+		'vars-on-top': 0,
+		'object-shorthand': 0,
 	},
 };
