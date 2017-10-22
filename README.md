@@ -135,7 +135,10 @@ output is an object with the following key-value pairs for the given string abov
 
 ## Specification
 
-The UALF "specification" looks something like [this](https://beta.api.met.no/images/UALF_format.png). Each of these named segments have been extracted as their own key-value pair of the resulting object returned from calling this package. All values are kept as strings to retain leading zeroes.
+The UALF "specification" looks something like
+[this](https://beta.api.met.no/images/UALF_format.png). Each of these named segments have been
+extracted as their own key-value pair of the resulting object returned from calling this package.
+All values are kept as strings to retain leading zeroes.
 
 ```javascript
 {
@@ -205,7 +208,8 @@ Changelog is available at [the repository](http://github.com/Gipphe/ualf/blob/ma
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Gipphe/ualf/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the
+[tags on this repository](https://github.com/Gipphe/ualf/tags).
 
 ## License
 
