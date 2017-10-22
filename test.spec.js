@@ -11,7 +11,7 @@ tap.equal(res.date.getFullYear(), 2017);
 tap.equal(res.date.getMonth(), 9);
 tap.equal(res.date.getDate(), 16);
 tap.equal(res.date.getHours(), 16);
-tap.equal(res.date.getMinutes(), 01);
+tap.equal(res.date.getMinutes(), 1);
 tap.equal(res.date.getSeconds(), 7);
 tap.equal(res.date.getMilliseconds(), 346);
 tap.equal(res.hours, '16');
