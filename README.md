@@ -46,6 +46,7 @@ output is an object with the following key-value pairs for the given string abov
 ```json
 {
   "version": "0",
+  "date": Date,
   "year": "2017",
   "month": "10",
   "day": "16",
@@ -80,6 +81,58 @@ output is an object with the following key-value pairs for the given string abov
 }
 ```
 
+For numerical output, pass along an options object with the `number` property set to `true`:
+
+```javascript
+var ualf = require('ualf');
+
+ualf(
+  '0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 ' +
+  '0 12 17 134.27 0.40 0.40 0.72 13.1 10.0 -0.0 1 1 0 1',
+  { number: true }
+);
+```
+
+output is an object with the following key-value pairs for the given string above:
+
+```json
+{
+  "version": 0,
+  "date": Date,
+  "year": 2017,
+  "month": 10,
+  "day": 16,
+  "hour": 16,
+  "hours": 16,
+  "minutes": 01,
+  "seconds": 07,
+  "nanoseconds": 345596160,
+  "nano": 345596160,
+  "latitude": 65.5204,
+  "lat": 65.5204,
+  "longitude": 12.7377,
+  "long": 12.7377,
+  "lng": 12.7377,
+  "peakCurrent": -87,
+  "multiplicity": 0,
+  "numSensors": 12,
+  "numberOfSensors": 12,
+  "freedom": 17,
+  "degreesOfFreedom": 17,
+  "ellipseAngle": 134.27,
+  "semiMajorAxis": 0.40,
+  "semiMinorAxis": 0.40,
+  "chiSquareValue": 0.72,
+  "riseTime": 13.1,
+  "peakToZeroTime": 10.0,
+  "maxRateOfRise": -0.0,
+  "cloudIndicator": 1,
+  "angleIndicator": 1,
+  "signalIndicator": 0,
+  "timingIndicator": 1
+}
+```
+
 ## Specification
 
 The UALF "specification" looks something like [this](https://beta.api.met.no/images/UALF_format.png). Each of these named segments have been extracted as their own key-value pair of the resulting object returned from calling this package. All values are kept as strings to retain leading zeroes.
@@ -87,6 +140,7 @@ The UALF "specification" looks something like [this](https://beta.api.met.no/ima
 ```javascript
 {
   version,
+  date,            // Date object with the passed date and time
   year,
   month,
   day,
