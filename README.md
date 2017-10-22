@@ -195,7 +195,9 @@ to run unit tests.
 
 ## Compatibility
 
-This package even works with ES3, meaning you can use it in IE 7 and 8 without issue.
+This package is compatible all the way down to Node 4, and at most uses ES6 features such as `const`
+and `let`. As such, in browser context, it is
+[compatible with Chrome 21+, Edge, Internet Explorer 11 Firefox 36 and Safari 5.1](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const#Browser_compatibility).
 
 ## Changelog
 
