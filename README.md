@@ -198,8 +198,7 @@ to run unit tests.
 
 ## Compatibility
 
-This package is compatible all the way down to ES3, meaning IE 7 and 8, as well as Node 0.12.x and
-earlier.
+This package is compatible all the way down to Node 4 and IE9.
 
 ## Changelog
 
