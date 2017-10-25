@@ -57,18 +57,14 @@ var convertStringsToNumbers = R.map(R.ifElse(
 	R.identity
 ));
 var splitToArrayBySpace = R.split(' ');
-var isConfigNumberPropTrue = R.ifElse(R.pipe(R.type, R.equals('Object')), R.propEq('number', true), R.F);
 
-module.exports = function ualf(str, config) {
-	return R.pipe(
-		splitToArrayBySpace,
-		zipAsObjWithSpecificKeys,
-		copySpecificProps,
-		setDatePropertyFromProps,
-		R.ifElse(
-			R.partial(isConfigNumberPropTrue, [config]),
-			convertStringsToNumbers,
-			R.identity
-		)
-	)(str);
-};
+module.exports = R.pipe(
+	splitToArrayBySpace,
+	zipAsObjWithSpecificKeys,
+	copySpecificProps,
+	setDatePropertyFromProps
+);
+module.exports.asNumbers = R.pipe(
+	module.exports,
+	convertStringsToNumbers
+);
