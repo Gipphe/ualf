@@ -7,13 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.0.0] - 2017-10-25
 
-## Changed
+### Changed
 
 - Numerical output is available as its separate function instead of being a configuration.
 
 ## [2.0.0] - 2017-10-25
 
-## Changed
+### Changed
 
 - Revised compatibility section in README to more accurately reflect the real compatibility scope
   of this package.
