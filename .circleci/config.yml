@@ -48,12 +48,6 @@ commands:
       - save_deps:
           node: << parameters.node >>
 
-  test_job:
-    steps:
-      - checkout
-      - setup_deps
-      - run_test
-
 executors:
   node10:
     docker:
@@ -77,7 +71,7 @@ jobs:
       - checkout
       - setup_deps:
           node: 10
-      - test_job
+      - run_test
 
   test_node8:
     executor: node8
@@ -85,7 +79,7 @@ jobs:
       - checkout
       - setup_deps:
           node: 8
-      - test_job
+      - run_test
 
   test_node6:
     executor: node6
@@ -93,7 +87,7 @@ jobs:
       - checkout
       - setup_deps:
           node: 6
-      - test_job
+      - run_test
 
   lint:
     executor: node10
