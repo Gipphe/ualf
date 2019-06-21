@@ -3,86 +3,74 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-jobs:
-  node8:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8.7
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
+commands:
+  get-deps:
     steps:
-      - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+  save-deps:
+    steps:
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+  install-deps:
+    steps:
       - run: yarn install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
+  run-test:
+    steps:
       - run: yarn test
+
+  run-lint:
+    steps:
+      - run: yarn lint
+
+  test-job:
+    steps:
+      - get-deps
+      - install-deps
+      - save-deps
+      - run-test
+
+jobs:
+  node10:
+    docker:
+      - image: circleci/node:10.16
+    working_directory: ~/repo
+    steps:
+      - test-job
+
+  node8:
+    docker:
+      - image: circleci/node:8.10
+    working_directory: ~/repo
+    steps:
+      - test-job
+
   node6:
     docker:
-      - image: circleci/node:6.11.4
+      - image: circleci/node:6.14
     working_directory: ~/repo
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn test --no-cov
-  node4:
-    docker:
-      - image: circleci/node:4.8.4
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn test --no-cov
+      - test-job
+
   lint:
     docker:
-      - image: circleci/node:8.7
+      - image: circleci/node:10.16
     working_directory: ~/repo
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn lint
+      - get-deps
+      - install-deps
+      - save-deps
+      - run-lint
+
 workflows:
   version: 2
   build:
