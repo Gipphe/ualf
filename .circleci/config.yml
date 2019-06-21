@@ -42,7 +42,7 @@ commands:
       - setup_deps
       - run_test
 
-executor:
+executors:
   node10:
     docker:
       - image: circleci/node:10.16
