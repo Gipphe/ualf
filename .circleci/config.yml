@@ -4,7 +4,7 @@
 #
 version: 2
 commands:
-  get-deps:
+  get_deps:
     steps:
       - restore_cache:
           keys:
@@ -12,31 +12,35 @@ commands:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-  save-deps:
+  save_deps:
     steps:
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-  install-deps:
+  install_deps:
     steps:
       - run: yarn install
 
-  run-test:
+  run_test:
     steps:
       - run: yarn test
 
-  run-lint:
+  run_lint:
     steps:
       - run: yarn lint
 
-  test-job:
+  setup_deps:
     steps:
-      - get-deps
-      - install-deps
-      - save-deps
-      - run-test
+      - get_deps
+      - install_deps
+      - save_deps
+
+  test_job:
+    steps:
+      - setup_deps
+      - run_test
 
 jobs:
   node10:
@@ -44,21 +48,21 @@ jobs:
       - image: circleci/node:10.16
     working_directory: ~/repo
     steps:
-      - test-job
+      - test_job
 
   node8:
     docker:
       - image: circleci/node:8.10
     working_directory: ~/repo
     steps:
-      - test-job
+      - test_job
 
   node6:
     docker:
       - image: circleci/node:6.14
     working_directory: ~/repo
     steps:
-      - test-job
+      - test_job
 
   lint:
     docker:
@@ -66,16 +70,16 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - get-deps
-      - install-deps
-      - save-deps
-      - run-lint
+      - get_deps
+      - install_deps
+      - save_deps
+      - run_lint
 
 workflows:
   version: 2
   build:
     jobs:
-      - node4
-      - node6
+      - node10
       - node8
+      - node6
       - lint
