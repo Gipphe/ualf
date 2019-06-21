@@ -5,19 +5,25 @@
 version: 2.1
 commands:
   get_deps:
+    parameters:
+      node:
+        type: integer
     steps:
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-node<< parameters.node >>-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v1-dependencies-node<< parameters.node >>
 
   save_deps:
+    parameters:
+      node:
+        type: integer
     steps:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-node<< parameters.node >>-{{ checksum "package.json" }}
 
   install_deps:
     steps:
@@ -32,10 +38,15 @@ commands:
       - run: yarn lint
 
   setup_deps:
+    parameters:
+      node:
+        type: integer
     steps:
-      - get_deps
+      - get_deps:
+          node: << parameters.node >>
       - install_deps
-      - save_deps
+      - save_deps:
+          node: << parameters.node >>
 
   test_job:
     steps:
@@ -60,33 +71,43 @@ executors:
     working_directory: ~/repo
 
 jobs:
-  node10:
+  test_node10:
     executor: node10
     steps:
+      - checkout
+      - setup_deps:
+          node: 10
       - test_job
 
-  node8:
+  test_node8:
     executor: node8
     steps:
+      - checkout
+      - setup_deps:
+          node: 8
       - test_job
 
-  node6:
+  test_node6:
     executor: node6
     steps:
+      - checkout
+      - setup_deps:
+          node: 6
       - test_job
 
   lint:
     executor: node10
     steps:
       - checkout
-      - setup_deps
+      - setup_deps:
+          node: 10
       - run_lint
 
 workflows:
   version: 2
   build:
     jobs:
-      - node10
-      - node8
-      - node6
+      - test_node10
+      - test_node8
+      - test_node6
       - lint
