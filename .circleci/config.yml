@@ -21,7 +21,7 @@ commands:
 
   install_deps:
     steps:
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
 
   run_test:
     steps:
@@ -46,17 +46,14 @@ executors:
   node10:
     docker:
       - image: circleci/node:10.16
-    working_directory: ~/repo
 
   node8:
     docker:
       - image: circleci/node:8.10
-    working_directory: ~/repo
 
   node6:
     docker:
       - image: circleci/node:6.14
-    working_directory: ~/repo
 
 jobs:
   node10:
