@@ -197,7 +197,7 @@ to run unit tests.
 
 ## Compatibility
 
-This package is compatible all the way down to Node 4 and IE9.
+This package should be compatible all the way down to Node 4 and IE9, but is only tested with Node 8 and up.
 
 ## Changelog
 
