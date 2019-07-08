@@ -35,7 +35,7 @@
 		"eslint-config-airbnb-base": "^13.1.0",
 		"eslint-plugin-import": "^2.17.3",
 		"standard-version": "^6.0.1",
-		"tap": "^14.2.4"
+		"tap": "^14.4.1"
 	},
 	"dependencies": {
 		"ramda": "^0.26.1"

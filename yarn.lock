@@ -3497,7 +3497,7 @@ tap-parser@^9.3.2:
   dependencies:
     yaml "^1.5.0"
 
-tap@^14.2.4:
+tap@^14.4.1:
   version "14.4.1"
   resolved "https://registry.yarnpkg.com/tap/-/tap-14.4.1.tgz#6cebe3c5e566a047af08fa79ed9b3dfea58df5b5"
   integrity sha512-eDO6oSFqoL0PP8GKcPPzNGGJ3XiJMQOFnAZbqWoaf//HDd232JQwQ4FdDAJtgn28+bGvJYC+wgvccsHzBd+RxQ==
