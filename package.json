@@ -11,6 +11,9 @@
 		"email": "gipphe@gmail.com",
 		"url": "http://giphtbase.org/"
 	},
+	"files": [
+		"index.js"
+	],
 	"keywords": [
 		"ulaf",
 		"llps",
