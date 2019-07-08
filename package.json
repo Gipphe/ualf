@@ -22,20 +22,22 @@
 	],
 	"scripts": {
 		"test": "tap --coverage test.spec.js",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"release": "standard-version"
 	},
 	"repository": {
 		"type": "git",
 		"url": "http://github.com/Gipphe/ualf.git"
 	},
 	"devDependencies": {
-		"coveralls": "^3.0.0",
-		"eslint": "4.18.2",
-		"eslint-config-airbnb-base": "^12.1.0",
-		"eslint-plugin-import": "2.7.0",
-		"tap": "^10.7.2"
+		"coveralls": "^3.0.4",
+		"eslint": "^5.16.0",
+		"eslint-config-airbnb-base": "^13.1.0",
+		"eslint-plugin-import": "^2.17.3",
+		"standard-version": "^6.0.1",
+		"tap": "^14.4.1"
 	},
 	"dependencies": {
-		"ramda": "^0.25.0"
+		"ramda": "^0.26.1"
 	}
 }

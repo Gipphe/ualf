@@ -45,8 +45,8 @@ var setDatePropertyFromProps = R.converge(R.assoc('date'), [
 	R.pipe(
 		R.props(['year', 'month', 'day', 'hours', 'minutes', 'seconds', 'nano']),
 		R.map(Number),
-		R.adjust(R.subtract(ph, 1), 1),
-		R.adjust(R.pipe(R.divide(ph, 1000000), Math.round), 6),
+		R.adjust(1, R.subtract(ph, 1)),
+		R.adjust(6, R.pipe(R.divide(ph, 1000000), Math.round)),
 		R.apply(R.construct(Date))
 	),
 	R.identity,
