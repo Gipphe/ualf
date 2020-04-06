@@ -51,17 +51,17 @@ commands:
 executors:
   node12:
     docker:
-      - image: circleci/node:12.4
+      - image: circleci/node:12
     working_directory: ~/repo
 
   node10:
     docker:
-      - image: circleci/node:10.16
+      - image: circleci/node:10
     working_directory: ~/repo
 
   node8:
     docker:
-      - image: circleci/node:8.10
+      - image: circleci/node:8
     working_directory: ~/repo
 
 jobs:
