@@ -28,19 +28,17 @@
 	],
 	"scripts": {
 		"test": "tap --coverage test.spec.js",
-		"lint": "eslint .",
-		"release": "standard-version"
+		"lint": "eslint ."
 	},
 	"repository": {
 		"type": "git",
 		"url": "http://github.com/Gipphe/ualf.git"
 	},
 	"devDependencies": {
-		"coveralls": "^3.0.4",
+		"coveralls": "^3.0.11",
 		"eslint": "^6.8.0",
 		"eslint-config-airbnb-base": "^14.1.0",
 		"eslint-plugin-import": "^2.20.1",
-		"standard-version": "^7.1.0",
 		"tap": "^14.4.1"
 	},
 	"dependencies": {
