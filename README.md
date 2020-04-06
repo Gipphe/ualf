@@ -185,7 +185,7 @@ This package is open to pull requests. To set up the test environment, fork it, 
 npm install
 ```
 
-in the package's folder. This will install `tap`, the only direct dependency.
+in the package's folder.
 
 Run the command
 
@@ -197,7 +197,7 @@ to run unit tests.
 
 ## Compatibility
 
-This package should be compatible all the way down to Node 4 and IE9, but is only tested with Node 8 and up.
+This package is compatible with Node versions all the way down to 8.11.1.
 
 ## Changelog
 
