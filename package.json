@@ -1,49 +1,47 @@
 {
-	"name": "ualf",
-	"description": "LLPS/CGLSS (UALF) data parser",
-	"version": "3.0.6",
-	"main": "index.js",
-	"license": "MIT",
-	"homepage": "https://github.com/Gipphe/ualf",
-	"bugs": "https://github.com/Gipphe/ualf/issues",
-	"engines": {
-		"node": ">=8.11.1"
-	},
-	"author": {
-		"name": "Victor Nascimento Bakke",
-		"email": "gipphe@gmail.com",
-		"url": "http://giphtbase.org/"
-	},
-	"files": [
-		"index.js"
-	],
-	"keywords": [
-		"ulaf",
-		"llps",
-		"cglss",
-		"lightning",
-		"string",
-		"parser",
-		"parse"
-	],
-	"scripts": {
-		"test": "tap --coverage test.spec.js",
-		"lint": "eslint .",
-		"release": "standard-version"
-	},
-	"repository": {
-		"type": "git",
-		"url": "http://github.com/Gipphe/ualf.git"
-	},
-	"devDependencies": {
-		"coveralls": "^3.0.4",
-		"eslint": "^6.8.0",
-		"eslint-config-airbnb-base": "^14.1.0",
-		"eslint-plugin-import": "^2.20.1",
-		"standard-version": "^7.1.0",
-		"tap": "^14.4.1"
-	},
-	"dependencies": {
-		"ramda": "^0.27.0"
-	}
+    "name": "ualf",
+    "description": "LLPS/CGLSS (UALF) data parser",
+    "version": "3.0.6",
+    "main": "index.js",
+    "license": "MIT",
+    "homepage": "https://github.com/Gipphe/ualf",
+    "bugs": "https://github.com/Gipphe/ualf/issues",
+    "engines": {
+        "node": ">=8.11.1"
+    },
+    "author": {
+        "name": "Victor Nascimento Bakke",
+        "email": "gipphe@gmail.com",
+        "url": "http://giphtbase.org/"
+    },
+    "files": [
+        "index.js"
+    ],
+    "keywords": [
+        "ulaf",
+        "llps",
+        "cglss",
+        "lightning",
+        "string",
+        "parser",
+        "parse"
+    ],
+    "scripts": {
+        "test": "tap --coverage test.spec.js",
+        "lint": "eslint ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/Gipphe/ualf.git"
+    },
+    "devDependencies": {
+        "coveralls": "^3.0.11",
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb-base": "^14.1.0",
+        "eslint-plugin-import": "^2.20.1",
+        "tap": "^14.4.1"
+    },
+    "dependencies": {
+        "ramda": "^0.27.0"
+    }
 }
