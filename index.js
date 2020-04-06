@@ -38,7 +38,7 @@ var copySpecificProps = R.pipe(
 	copyProp('longitude', 'long'),
 	copyProp('longitude', 'lng'),
 	copyProp('numberOfSensors', 'numSensors'),
-	copyProp('degreesOfFreedom', 'freedom')
+	copyProp('degreesOfFreedom', 'freedom'),
 );
 var zipAsObjWithSpecificKeys = R.zipObj(keys);
 var setDatePropertyFromProps = R.converge(R.assoc('date'), [
@@ -47,14 +47,14 @@ var setDatePropertyFromProps = R.converge(R.assoc('date'), [
 		R.map(Number),
 		R.adjust(1, R.subtract(ph, 1)),
 		R.adjust(6, R.pipe(R.divide(ph, 1000000), Math.round)),
-		R.apply(R.construct(Date))
+		R.apply(R.construct(Date)),
 	),
 	R.identity,
 ]);
 var convertStringsToNumbers = R.map(R.ifElse(
 	R.pipe(R.type, R.equals('String')),
 	Number,
-	R.identity
+	R.identity,
 ));
 var splitToArrayBySpace = R.split(' ');
 
@@ -62,9 +62,9 @@ module.exports = R.pipe(
 	splitToArrayBySpace,
 	zipAsObjWithSpecificKeys,
 	copySpecificProps,
-	setDatePropertyFromProps
+	setDatePropertyFromProps,
 );
 module.exports.asNumbers = R.pipe(
 	module.exports,
-	convertStringsToNumbers
+	convertStringsToNumbers,
 );

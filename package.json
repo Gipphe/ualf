@@ -6,6 +6,9 @@
 	"license": "MIT",
 	"homepage": "https://github.com/Gipphe/ualf",
 	"bugs": "https://github.com/Gipphe/ualf/issues",
+	"engines": {
+		"node": ">=8.11.1"
+	},
 	"author": {
 		"name": "Victor Nascimento Bakke",
 		"email": "gipphe@gmail.com",
@@ -34,9 +37,9 @@
 	},
 	"devDependencies": {
 		"coveralls": "^3.0.4",
-		"eslint": "^5.16.0",
-		"eslint-config-airbnb-base": "^13.1.0",
-		"eslint-plugin-import": "^2.17.3",
+		"eslint": "^6.8.0",
+		"eslint-config-airbnb-base": "^14.1.0",
+		"eslint-plugin-import": "^2.20.1",
 		"standard-version": "^6.0.1",
 		"tap": "^14.4.1"
 	},
