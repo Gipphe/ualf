@@ -3,105 +3,77 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2.1
+
+orbs:
+  node: circleci/node@5.1
+  coveralls: coveralls/coveralls@2.1.1
+
 commands:
-  get_deps:
-    parameters:
-      node:
-        type: integer
-    steps:
-      - restore_cache:
-          keys:
-            - v1-dependencies-node<< parameters.node >>-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-node<< parameters.node >>
-
-  save_deps:
-    parameters:
-      node:
-        type: integer
-    steps:
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-node<< parameters.node >>-{{ checksum "package.json" }}
-
-  install_deps:
-    steps:
-      - run: yarn install --frozen-lockfile
-
-  run_test:
-    steps:
-      - run: yarn test
-
-  run_lint:
-    steps:
-      - run: yarn lint
-
   setup_deps:
     parameters:
       node:
-        type: integer
+        type: string
     steps:
-      - get_deps:
-          node: << parameters.node >>
-      - install_deps
-      - save_deps:
-          node: << parameters.node >>
+      - node/install:
+          node-version: << parameters.node >>
+      - run: npm ci
 
 executors:
-  node12:
+  base:
     docker:
-      - image: circleci/node:12
-    working_directory: ~/repo
-
-  node10:
-    docker:
-      - image: circleci/node:10
-    working_directory: ~/repo
-
-  node8:
-    docker:
-      - image: circleci/node:8
-    working_directory: ~/repo
+      - image: cimg/base:stable
 
 jobs:
-  test_node12:
-    executor: node12
+  test:
+    parameters:
+      node:
+        type: string
+    executor: base
     steps:
       - checkout
       - setup_deps:
-          node: 12
-      - run_test
-
-  test_node10:
-    executor: node10
-    steps:
-      - checkout
-      - setup_deps:
-          node: 10
-      - run_test
-
-  test_node8:
-    executor: node8
-    steps:
-      - checkout
-      - setup_deps:
-          node: 8
-      - run_test
+          node: << parameters.node >>
+      - run: npm run test
+      - coveralls/upload:
+          parallel: true
+          flag_name: test-<< parameters.node >>
+          verbose: true
 
   lint:
-    executor: node10
+    executor: base
     steps:
       - checkout
       - setup_deps:
-          node: 10
-      - run_lint
+          node: "stable"
+      - run: npm run lint
+
+  fmt:
+    executor: base
+    steps:
+      - checkout
+      - setup_deps:
+          node: "stable"
+      - run: npm run fmt:check
+
+  result:
+    executor: base
+    steps:
+      - run: echo ok
+      - coveralls/upload:
+          parallel_finished: true
+          carryforward: "test-16,test-18,test-19,test-20"
 
 workflows:
-  version: 2
   build:
     jobs:
-      - test_node12
-      - test_node10
-      - test_node8
+      - fmt
       - lint
+      - test:
+          matrix:
+            parameters:
+              node: ["16", "18", "19", "20"]
+      - result:
+          requires:
+            - fmt
+            - lint
+            - test
