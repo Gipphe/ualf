@@ -3,11 +3,15 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2.1
+
+orbs:
+  node: circleci/node@5.1
+
 commands:
   get_deps:
     parameters:
       node:
-        type: integer
+        type: string
     steps:
       - restore_cache:
           keys:
@@ -18,7 +22,7 @@ commands:
   save_deps:
     parameters:
       node:
-        type: integer
+        type: string
     steps:
       - save_cache:
           paths:
@@ -29,6 +33,20 @@ commands:
     steps:
       - run: yarn install --frozen-lockfile
 
+  setup_deps:
+    parameters:
+      node:
+        type: string
+    steps:
+      - get_deps:
+          node: << parameters.node >>
+      - node/install:
+          node-version: << parameters.node >>
+          install-yarn: true
+      - install_deps
+      - save_deps:
+          node: << parameters.node >>
+
   run_test:
     steps:
       - run: yarn test
@@ -37,71 +55,36 @@ commands:
     steps:
       - run: yarn lint
 
-  setup_deps:
-    parameters:
-      node:
-        type: integer
-    steps:
-      - get_deps:
-          node: << parameters.node >>
-      - install_deps
-      - save_deps:
-          node: << parameters.node >>
-
 executors:
-  node12:
+  base:
     docker:
-      - image: circleci/node:12
-    working_directory: ~/repo
-
-  node10:
-    docker:
-      - image: circleci/node:10
-    working_directory: ~/repo
-
-  node8:
-    docker:
-      - image: circleci/node:8
-    working_directory: ~/repo
+      - image: cimg/base:stable
 
 jobs:
-  test_node12:
-    executor: node12
+  test:
+    parameters:
+      node:
+        type: string
+    executor: base
     steps:
       - checkout
       - setup_deps:
-          node: 12
-      - run_test
-
-  test_node10:
-    executor: node10
-    steps:
-      - checkout
-      - setup_deps:
-          node: 10
-      - run_test
-
-  test_node8:
-    executor: node8
-    steps:
-      - checkout
-      - setup_deps:
-          node: 8
+          node: << parameters.node >>
       - run_test
 
   lint:
-    executor: node10
+    executor: base
     steps:
       - checkout
       - setup_deps:
-          node: 10
+          node: "20"
       - run_lint
 
 workflows:
-  version: 2
   build:
     jobs:
-      - test_node12
-      - test_node10
-      - test_node8
       - lint
+      - test:
+          matrix:
+            parameters:
+              node: ["14", "16", "18", "19", "20"]
