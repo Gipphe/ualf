@@ -33,7 +33,7 @@ npm install --save ualf
 ### Usage
 
 ```javascript
-const ualf = require("ualf");
+import ualf from "ualf";
 
 ualf(
   "0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 " +
@@ -41,7 +41,8 @@ ualf(
 );
 ```
 
-output is an object with the following key-value pairs for the given string above:
+output is an object with the following key-value pairs for the given string
+above:
 
 ```javascript
 ({
@@ -84,7 +85,7 @@ output is an object with the following key-value pairs for the given string abov
 For numerical output, use the attached `asNumbers` function:
 
 ```javascript
-const ualf = require("ualf").asNumbers;
+import * as ualf from "ualf";
 
 ualf(
   "0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 " +
@@ -92,7 +93,8 @@ ualf(
 );
 ```
 
-output is an object with the following key-value pairs for the given string above:
+output is an object with the following key-value pairs for the given string
+above:
 
 ```javascript
 ({
@@ -134,66 +136,71 @@ output is an object with the following key-value pairs for the given string abov
 
 ## Specification
 
-The UALF "specification" looks something like
-[this]. Each of these named segments have been
-extracted as their own key-value pair of the resulting object returned from calling this package.
-All values are kept as strings to retain leading zeroes.
+The UALF "specification" looks something like [this]. Each of these named
+segments have been extracted as their own key-value pair of the resulting object
+returned from calling this package. All values are kept as strings to retain
+leading zeroes.
 
-```javascript
+```text
 {
   version,
-    date, // Date object with the passed date and time
-    year,
-    month,
-    day,
-    hour,
-    hours, // alias for `hour`
-    minutes,
-    seconds,
-    nanoseconds,
-    nano, // alias for `nanoseconds`
-    latitude,
-    lat, // alias for `latitude`
-    longitude,
-    long, // alias for `longitude`
-    lng, // alias for `longitude`
-    peakCurrent,
-    multiplicity,
-    numberOfSensors,
-    numSensors, // alias for `numberOfSensors`
-    degreesOfFreedom,
-    freedom, // alias for `degreesOfFreedom`
-    ellipseAngle,
-    semiMajorAxis,
-    semiMinorAxis,
-    chiSquareValue,
-    riseTime,
-    peakToZeroTime,
-    maxRateOfRise,
-    cloudIndicator,
-    angleIndicator,
-    signalIndicator,
-    timingIndicator;
+  date, // Date object with the passed date and time
+  year,
+  month,
+  day,
+  hour,
+  hours, // alias for `hour`
+  minutes,
+  seconds,
+  nanoseconds,
+  nano, // alias for `nanoseconds`
+  latitude,
+  lat, // alias for `latitude`
+  longitude,
+  long, // alias for `longitude`
+  lng, // alias for `longitude`
+  peakCurrent,
+  multiplicity,
+  numberOfSensors,
+  numSensors, // alias for `numberOfSensors`
+  degreesOfFreedom,
+  freedom, // alias for `degreesOfFreedom`
+  ellipseAngle,
+  semiMajorAxis,
+  semiMinorAxis,
+  chiSquareValue,
+  riseTime,
+  peakToZeroTime,
+  maxRateOfRise,
+  cloudIndicator,
+  angleIndicator,
+  signalIndicator,
+  timingIndicator;
 }
 ```
 
 ## Contribution
 
-This package is open to pull requests. To set up the test environment, fork it, clone it, and run
+This package is open to pull requests. To set up the test environment, fork it,
+clone it, and run
 
-```javascript
+```bash
 npm install
 ```
 
 in the package's folder.
 
-Run the command
+To run unit tests:
 
-```javascript
+```bash
 npm test
 ```
 
-to run unit tests.
+To build:
+
+```bash
+npm build
+```
 
 ## Compatibility
 
