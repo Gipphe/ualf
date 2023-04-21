@@ -24,6 +24,18 @@ executors:
       - image: cimg/base:stable
 
 jobs:
+  build:
+    parameters:
+      node:
+        type: string
+    executor: base
+    steps:
+      - checkout
+      - setup_deps:
+          node: << parameters.node >>
+      - run: npm run build
+      - run: git -c core.fileMode=false diff --exit-code
+
   test:
     parameters:
       node:
@@ -63,17 +75,24 @@ jobs:
           parallel_finished: true
           carryforward: "test-16,test-18,test-19,test-20"
 
+node_versions: &node_versions ["16", "18", "19", "20"]
+
 workflows:
-  build:
+  full:
     jobs:
+      - build:
+          matrix:
+            parameters:
+              node: *node_versions
       - fmt
       - lint
       - test:
           matrix:
             parameters:
-              node: ["16", "18", "19", "20"]
+              node: *node_versions
       - result:
           requires:
+            - build
             - fmt
             - lint
             - test
