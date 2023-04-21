@@ -1,8 +1,8 @@
-const test = require("ava");
-const ualf = require("./");
+import test from "ava";
+import * as ualf from "../src";
 
 test("ualf", (t) => {
-  var res = ualf(
+  const res = ualf.default(
     "0 2017 10 16 16 01 07 345596160 65.5204 12.7377 -87 0 12 17 134.27 0.40 0.40 0.72 13.1 10.0 -0.0 1 1 0 1"
   );
   t.is(typeof res, "object");

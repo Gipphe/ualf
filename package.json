@@ -2,21 +2,21 @@
   "name": "ualf",
   "description": "LLPS/CGLSS (UALF) data parser",
   "version": "3.0.7",
-  "main": "index.js",
   "license": "MIT",
   "homepage": "https://github.com/Gipphe/ualf",
   "bugs": "https://github.com/Gipphe/ualf/issues",
   "engines": {
-    "node": ">=8.11.1"
+    "node": ">=16"
   },
   "author": {
     "name": "Victor Nascimento Bakke",
     "email": "gipphe@gmail.com",
     "url": "http://giphtbase.org/"
   },
-  "files": [
-    "index.js"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Gipphe/ualf.git"
+  },
   "keywords": [
     "ulaf",
     "llps",
@@ -26,24 +26,43 @@
     "parser",
     "parse"
   ],
+  "files": [
+    "dist/cjs/*",
+    "dist/mjs/*"
+  ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
   "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && ./fixup.sh",
+    "clean": "rm -rf dist/*",
     "test": "c8 --reporter text --reporter lcov --reporter html ava",
     "lint": "eslint .",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check ."
   },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/Gipphe/ualf.git"
-  },
   "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
     "ava": "^5.2.0",
     "c8": "^7.13.0",
-    "coveralls": "^3.0.11",
     "eslint": "^8.38.0",
-    "prettier": "^2.8.7"
-  },
-  "dependencies": {
-    "ramda": "^0.29.0"
+    "prettier": "^2.8.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
   }
 }
