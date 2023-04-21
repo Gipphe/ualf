@@ -1,7 +1,7 @@
 {
   "name": "ualf",
   "description": "LLPS/CGLSS (UALF) data parser",
-  "version": "3.0.7",
+  "version": "3.1.0",
   "license": "MIT",
   "homepage": "https://github.com/Gipphe/ualf",
   "bugs": "https://github.com/Gipphe/ualf/issues",
