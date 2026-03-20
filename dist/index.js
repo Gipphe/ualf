@@ -36,7 +36,10 @@ const copyProp = (x, y) => (o) => {
     const k = {
         [y]: o[x],
     };
-    return Object.assign(Object.assign({}, o), k);
+    return {
+        ...o,
+        ...k,
+    };
 };
 const copySpecificProps = (x) => Identity(x)
     .map(copyProp("nanoseconds", "nano"))
@@ -50,7 +53,10 @@ const copySpecificProps = (x) => Identity(x)
 const zipToObj = (keys) => (vals) => {
     return keys.reduce((acc, key, i) => {
         const val = vals[i];
-        return Object.assign(Object.assign({}, acc), { [key]: val });
+        return {
+            ...acc,
+            [key]: val,
+        };
     }, {});
 };
 const zipAsObjWithSpecificKeys = zipToObj(keys);
@@ -62,11 +68,17 @@ const setDatePropertyFromProps = (o) => {
     const minutes = Number(o.minutes);
     const seconds = Number(o.seconds);
     const millis = Math.round(Number(o.nano) / 1000000);
-    return Object.assign(Object.assign({}, o), { date: new Date(year, month, day, hours, minutes, seconds, millis) });
+    return {
+        ...o,
+        date: new Date(year, month, day, hours, minutes, seconds, millis),
+    };
 };
 const convertStringsToNumbers = (x) => {
     const keys = objectKeys(x);
-    return keys.reduce((acc, key) => (Object.assign(Object.assign({}, acc), { [key]: typeof x[key] === "string" ? Number(x[key]) : x[key] })), {});
+    return keys.reduce((acc, key) => ({
+        ...acc,
+        [key]: typeof x[key] === "string" ? Number(x[key]) : x[key],
+    }), {});
 };
 const objectKeys = (o) => Object.keys(o);
 const splitToArrayBySpace = (xs) => xs.split(" ");

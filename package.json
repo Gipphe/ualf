@@ -27,15 +27,12 @@
     "parse"
   ],
   "files": [
-    "dist/cjs/*",
-    "dist/mjs/*"
+    "dist/*"
   ],
-  "main": "dist/cjs/index.js",
-  "module": "dist/mjs/index.js",
+  "module": "dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/mjs/index.js",
-      "require": "./dist/cjs/index.js"
+      "import": "./dist/index.js"
     }
   },
   "ava": {
@@ -47,7 +44,7 @@
     ]
   },
   "scripts": {
-    "build": "npm run clean && tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && ./fixup.sh",
+    "build": "npm run clean && tsc -p tsconfig.json && ./fixup.sh",
     "clean": "rm -rf dist/*",
     "test": "c8 --reporter text --reporter lcov --reporter html ava",
     "lint": "eslint .",
@@ -55,14 +52,17 @@
     "fmt:check": "prettier --check ."
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
-    "ava": "^5.2.0",
+    "@eslint/js": "^10.0.1",
+    "@tsconfig/node-lts": "^24.0.0",
+    "@tsconfig/recommended": "^1.0.13",
+    "@tsconfig/strictest": "^2.0.8",
+    "ava": "^7.0.0",
     "c8": "^7.13.0",
-    "eslint": "^8.38.0",
-    "prettier": "^2.8.7",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "eslint": "^8.57.1",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.1"
   }
 }
