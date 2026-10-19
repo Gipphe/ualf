@@ -1,0 +1,27 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: 04:00
+  - package-ecosystem: "nix"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: 04:00
+    groups:
+      flake-input-updates:
+        applies-to: version-updates
+        patterns:
+          - "*"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: 04:00
+    groups:
+      npm-package-updates:
+        applies-to: version-updates
+        patterns:
+          - "*"
